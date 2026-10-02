@@ -13,15 +13,14 @@ npm run preview  # preview the production build
 
 ## Where to edit
 
-Everything lives in `src/components/FoodByHybek.jsx`.
-
-- `PLACEHOLDERS` at the top: phone, WhatsApp number (digits only, with country code), address, socials, owner name.
-- `dishes`: replace the sample dishes with her real menu.
-- Anything in [square brackets] is copy waiting on the client.
+- `src/data/siteContent.js`: phone, WhatsApp number (digits only, with country code), address, socials, name, nav links, services and the dish list. Anything in [square brackets] is a note to the client.
+- `src/components/sections/`: one file per page section.
+- `src/components/layout/`: nav, footer, floating WhatsApp button.
+- `src/components/ui/`: shared pieces (buttons, headings, reveal animation, photo placeholder, logo).
+- `src/styles/tokens.js`: the shared colour and font class strings.
 - Photo blocks are `PhotoPlaceholder` components. Swap each for an `<img>` once photos arrive.
 
 ## Still to do
 
 - Wire the quote form's `handleSubmit` to a backend that emails order@foodbyhybek.com.
 - Replace the text logo (`Logo` component) with the real logo file.
-# foodbyhybek
