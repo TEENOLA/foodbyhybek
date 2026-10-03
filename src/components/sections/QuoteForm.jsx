@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Mail, MessageCircle, Phone } from "lucide-react";
-import { PLACEHOLDERS, WHATSAPP_LINK, eventTypes } from "../../data/siteContent";
+import {
+  PLACEHOLDERS,
+  WHATSAPP_LINK,
+  eventTypes,
+} from "../../data/siteContent";
 import { GOLD, GOLD_BORDER, SANS, SERIF } from "../../styles/tokens";
 import Reveal from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
@@ -63,57 +67,128 @@ export default function QuoteForm() {
 
         {status === "success" ? (
           <div className="flex animate-fade-up flex-col items-center justify-center py-12 text-center">
-            <h3 className={`${SERIF} text-3xl font-semibold text-[#F3EEE3]`}>Request sent</h3>
+            <h3 className={`${SERIF} text-3xl font-semibold text-[#F3EEE3]`}>
+              Request sent
+            </h3>
             <p className={`${SANS} mt-4 max-w-sm text-sm text-[#F3EEE3]/70`}>
-              Thank you. We'll review your event details and reply with a custom quote.
+              Thank you. We'll review your event details and reply with a custom
+              quote.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className={labelClass}>Name</label>
+              <label htmlFor="name" className={labelClass}>
+                Name
+              </label>
               <input id="name" name="name" required className={inputClass} />
             </div>
             <div>
-              <label htmlFor="phone" className={labelClass}>Phone</label>
-              <input id="phone" name="phone" type="tel" required className={inputClass} />
+              <label htmlFor="phone" className={labelClass}>
+                Phone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                className={inputClass}
+              />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="email" className={labelClass}>Email (optional)</label>
-              <input id="email" name="email" type="email" className={inputClass} />
+              <label htmlFor="email" className={labelClass}>
+                Email (optional)
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                className={inputClass}
+              />
             </div>
             <div>
-              <label htmlFor="eventType" className={labelClass}>Event type</label>
-              <select id="eventType" name="eventType" required defaultValue="" className={inputClass}>
-                <option value="" disabled>Select one</option>
+              <label htmlFor="eventType" className={labelClass}>
+                Event type
+              </label>
+              <select
+                id="eventType"
+                name="eventType"
+                required
+                defaultValue=""
+                className={inputClass}
+              >
+                <option value="" disabled>
+                  Select one
+                </option>
                 {eventTypes.map((eventType) => (
-                  <option key={eventType} value={eventType}>{eventType}</option>
+                  <option key={eventType} value={eventType}>
+                    {eventType}
+                  </option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="eventDate" className={labelClass}>Event date</label>
-              <input id="eventDate" name="eventDate" type="date" required className={inputClass} />
+              <label htmlFor="eventDate" className={labelClass}>
+                Event date
+              </label>
+              {/* iOS Safari gives date inputs a minimum width and height of their own, so reset them */}
+              <input
+                id="eventDate"
+                name="eventDate"
+                type="date"
+                required
+                className={`${inputClass} block h-[46px] min-w-0 max-w-full appearance-none text-left [&::-webkit-date-and-time-value]:text-left`}
+              />
             </div>
             <div>
-              <label htmlFor="guestCount" className={labelClass}>Estimated guests</label>
-              <input id="guestCount" name="guestCount" type="number" min={1} className={inputClass} />
+              <label htmlFor="guestCount" className={labelClass}>
+                Estimated guests
+              </label>
+              <input
+                id="guestCount"
+                name="guestCount"
+                type="number"
+                min={1}
+                className={inputClass}
+              />
             </div>
             <div>
-              <label htmlFor="area" className={labelClass}>Area in Edmonton</label>
+              <label htmlFor="area" className={labelClass}>
+                Area in Edmonton
+              </label>
               <input id="area" name="area" className={inputClass} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="dishes" className={labelClass}>Dishes you're interested in</label>
-              <input id="dishes" name="dishes" placeholder="Jollof, suya, egusi..." className={inputClass} />
+              <label htmlFor="dishes" className={labelClass}>
+                Dishes you're interested in
+              </label>
+              <input
+                id="dishes"
+                name="dishes"
+                placeholder="Jollof, suya, egusi..."
+                className={inputClass}
+              />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="message" className={labelClass}>Dietary needs or anything else</label>
-              <textarea id="message" name="message" rows={4} className={inputClass} />
+              <label htmlFor="message" className={labelClass}>
+                Dietary needs or anything else
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className={inputClass}
+              />
             </div>
 
             {/* Honeypot field, hidden from people */}
-            <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+            <input
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
 
             <div className="sm:col-span-2">
               <button
@@ -124,9 +199,15 @@ export default function QuoteForm() {
                 {status === "sending" ? "Sending..." : "Send request"}
               </button>
               {status === "error" && (
-                <p className={`${SANS} mt-4 text-sm text-[#F3EEE3]/80`} role="alert">
+                <p
+                  className={`${SANS} mt-4 text-sm text-[#F3EEE3]/80`}
+                  role="alert"
+                >
                   Your request didn't send. Please try again, or{" "}
-                  <a href={WHATSAPP_LINK} className={`${GOLD} underline underline-offset-4`}>
+                  <a
+                    href={WHATSAPP_LINK}
+                    className={`${GOLD} underline underline-offset-4`}
+                  >
                     reach us on WhatsApp
                   </a>
                   .
