@@ -1,17 +1,42 @@
 import { useState } from "react";
+import logoMark from "../../assets/logo-mark.png";
 import { dishes, menuCategories } from "../../data/siteContent";
 import { GOLD, SANS, SERIF } from "../../styles/tokens";
-import PhotoPlaceholder from "../ui/PhotoPlaceholder";
 import QuoteButton from "../ui/QuoteButton";
 import Reveal from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
+
+// Only show the Nigerian/Ghanaian tag when the menu actually mixes both
+const hasMixedOrigins = new Set(dishes.map((dish) => dish.origin)).size > 1;
+
+function DishPhoto({ dish }) {
+  if (dish.photo) {
+    return (
+      <div className="overflow-hidden">
+        <img
+          src={dish.photo}
+          alt={dish.name}
+          loading="lazy"
+          className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
+  // No photo yet: branded placeholder card
+  return (
+    <div className="flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-[#2a2418] via-[#16130d] to-[#0a0a0a]">
+      <img src={logoMark} alt="" className="h-16 w-auto opacity-30" />
+    </div>
+  );
+}
 
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0]);
   const visibleDishes = dishes.filter((dish) => dish.category === activeCategory);
 
   return (
-    <section id="menu" className="bg-black px-6 py-24 sm:py-32">
+    <section id="menu" className="bg-[#141414] px-6 py-24 sm:py-32">
       <SectionHeading
         title="The Menu"
         subtitle="Every event is different. Pricing depends on your guest count and menu."
@@ -43,18 +68,24 @@ export default function MenuSection() {
         })}
       </div>
 
-      {/* Cards remount on category change so they animate in again */}
-      <ul className="mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-5 md:grid-cols-3">
+      {/* Cards remount on category change so they animate in again.
+          Flex + centred rows keep a short row (3 dishes) tidy. */}
+      <ul className="mx-auto mt-12 flex max-w-6xl flex-wrap justify-center gap-5">
         {visibleDishes.map((dish, index) => (
-          <Reveal as="li" key={`${activeCategory}-${dish.name}`} delay={index * 90}>
-            <div className="h-full border border-[#C9A24B]/25 bg-[#141414] transition-colors duration-300 hover:border-[#C9A24B]">
-              <PhotoPlaceholder label="[Add a dish photo]" className="aspect-[4/3] w-full" />
-              <div className="p-5">
-                <p className={`${SANS} text-[10px] uppercase tracking-[0.25em] ${GOLD}`}>{dish.origin}</p>
-                <h3 className={`${SERIF} mt-2 text-2xl font-semibold text-[#F3EEE3]`}>{dish.name}</h3>
-                <p className={`${SANS} mt-2 text-xs leading-relaxed text-[#F3EEE3]/60`}>
-                  [A line or two about this dish]
-                </p>
+          <Reveal
+            as="li"
+            key={`${activeCategory}-${dish.name}`}
+            delay={index * 90}
+            className="w-[calc(50%-0.625rem)] md:w-[calc(25%-0.9375rem)]"
+          >
+            <div className="group h-full border border-[#C9A24B]/25 bg-black transition-colors duration-300 hover:border-[#C9A24B]">
+              <DishPhoto dish={dish} />
+              <div className="p-4 sm:p-5">
+                {hasMixedOrigins && (
+                  <p className={`${SANS} text-[10px] uppercase tracking-[0.25em] ${GOLD}`}>{dish.origin}</p>
+                )}
+                <h3 className={`${SERIF} mt-1 text-xl font-semibold text-[#F3EEE3] sm:text-2xl`}>{dish.name}</h3>
+                <p className={`${SANS} mt-2 text-xs leading-relaxed text-[#F3EEE3]/60`}>{dish.description}</p>
               </div>
             </div>
           </Reveal>

@@ -1,24 +1,35 @@
+import heroPhoto from "../../assets/hero/hero-buffet-perspective.webp";
 import { PLACEHOLDERS } from "../../data/siteContent";
-import { GOLD, SANS, SERIF } from "../../styles/tokens";
-import PhotoPlaceholder from "../ui/PhotoPlaceholder";
+import { GOLD, SANS } from "../../styles/tokens";
+import logoFull from "../../assets/logo-full.png";
 import QuoteButton from "../ui/QuoteButton";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-end justify-center overflow-hidden bg-black">
-      {/* Replace with the hero dish photo, then keep the dark overlay below */}
+    // mt-24 matches the nav height, so the photo starts below the nav instead of behind it
+    <section
+      id="top"
+      className="relative mt-24 flex min-h-[calc(100svh-6rem)] items-end justify-center overflow-hidden bg-black"
+    >
       <div className="absolute inset-0 animate-slow-zoom">
-        <PhotoPlaceholder label="[Add your best dish photo here]" className="h-full w-full" />
+        <img
+          src={heroPhoto}
+          alt="Buffet line of rice dishes in black and gold serving bowls"
+          fetchPriority="high"
+          className="h-full w-full object-cover object-[40%_45%] md:object-[50%_45%]"
+        />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
+      {/* Dark overlay keeps the logo readable */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/35" />
 
       <div className="relative z-10 flex flex-col items-center px-6 pb-24 text-center">
-        <h1
+        <h1 className="sr-only">{PLACEHOLDERS.businessName}</h1>
+        <img
+          src={logoFull}
+          alt=""
           style={{ animationDelay: "300ms" }}
-          className={`${SERIF} animate-fade-up text-5xl font-bold tracking-[0.15em] text-[#F3EEE3] sm:text-7xl`}
-        >
-          {PLACEHOLDERS.businessName}
-        </h1>
+          className="h-52 w-auto animate-fade-up drop-shadow-[0_6px_24px_rgba(0,0,0,0.6)] sm:h-64"
+        />
         <p
           style={{ animationDelay: "650ms" }}
           className={`${SANS} mt-5 animate-fade-up text-xs uppercase tracking-[0.35em] ${GOLD}`}

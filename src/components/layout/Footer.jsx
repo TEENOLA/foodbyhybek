@@ -6,10 +6,10 @@ const exploreLinks = [...navLinksLeft, ...navLinksRight, { label: "Request a Quo
 
 export default function Footer() {
   return (
-    <footer className="bg-[#141414] px-6 pt-20">
+    <footer className="border-t border-[#C9A24B]/20 bg-black px-6 pt-20">
       <div className="mx-auto grid max-w-6xl gap-12 pb-16 text-center md:grid-cols-3 md:text-left">
-        <div>
-          <Logo />
+        <div className="flex justify-center md:justify-start">
+          <Logo variant="full" />
         </div>
 
         <div>
@@ -22,7 +22,7 @@ export default function Footer() {
           </ul>
           <div className={`${SANS} mt-5 flex justify-center gap-5 text-sm md:justify-start ${GOLD}`}>
             <a href={PLACEHOLDERS.instagramUrl}>Instagram</a>
-            <a href={PLACEHOLDERS.facebookUrl}>Facebook</a>
+            {PLACEHOLDERS.facebookUrl !== "#" && <a href={PLACEHOLDERS.facebookUrl}>Facebook</a>}
           </div>
         </div>
 

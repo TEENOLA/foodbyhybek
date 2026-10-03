@@ -18,6 +18,8 @@ npm run preview  # preview the production build
 - `src/components/layout/`: nav, footer, floating WhatsApp button.
 - `src/components/ui/`: shared pieces (buttons, headings, reveal animation, photo placeholder, logo).
 - `src/styles/tokens.js`: the shared colour and font class strings.
+- Dish photos: drop `src/assets/menu/dishes/<slug>.webp` (4:3, about 800x600). The slug is the dish's `slug` in `siteContent.js`; the card picks the photo up automatically.
+- Gallery: add `src/assets/gallery/<slug>.webp` (3:2), then add its slug and alt text to `galleryItems` in `siteContent.js`.
 - Photo blocks are `PhotoPlaceholder` components. Swap each for an `<img>` once photos arrive.
 
 ## Still to do

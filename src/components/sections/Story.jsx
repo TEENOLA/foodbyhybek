@@ -1,16 +1,20 @@
+import ownerPhoto from "../../assets/story/owner.webp";
 import { PLACEHOLDERS } from "../../data/siteContent";
 import { GOLD, SANS, SERIF } from "../../styles/tokens";
-import PhotoPlaceholder from "../ui/PhotoPlaceholder";
 import Reveal from "../ui/Reveal";
 
 export default function Story() {
   return (
     <section id="story" className="grid bg-[#141414] lg:grid-cols-2">
-      <Reveal from="left" className="min-h-[360px] lg:min-h-[560px]">
-        <PhotoPlaceholder
-          label="[Add a photo of yourself cooking or at an event]"
-          className="h-full min-h-[360px] w-full lg:min-h-[560px]"
+      <Reveal from="left" className="relative min-h-[380px] lg:min-h-[560px]">
+        <img
+          src={ownerPhoto}
+          alt={`${PLACEHOLDERS.ownerName}, owner of ${PLACEHOLDERS.businessName}`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
         />
+        {/* Soft fade into the panel beside (or below) the photo */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414] from-0% via-transparent via-30% to-transparent lg:bg-gradient-to-l" />
       </Reveal>
 
       <Reveal from="right" delay={200} className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-20">

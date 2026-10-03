@@ -31,13 +31,13 @@ export default function QuoteForm() {
   };
 
   return (
-    <section id="quote" className="bg-black px-6 py-24 sm:py-32">
+    <section id="quote" className="bg-[#141414] px-6 py-24 sm:py-32">
       <SectionHeading
         title="Request a Quote"
         subtitle="Tell us about your event and we'll get back to you with a custom quote."
       />
 
-      <Reveal className="mx-auto mt-14 grid max-w-6xl gap-12 border border-[#C9A24B]/40 bg-[#101010] p-6 sm:p-10 lg:grid-cols-[1.4fr_1fr]">
+      <Reveal className="mx-auto mt-14 grid max-w-6xl gap-12 border border-[#C9A24B]/40 bg-[#0d0d0d] p-6 sm:p-10 lg:grid-cols-[1.4fr_1fr]">
         {/* Direct contact options come first on mobile */}
         <aside className="order-first space-y-6 lg:order-last">
           <a

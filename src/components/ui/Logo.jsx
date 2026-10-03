@@ -1,11 +1,19 @@
+import logoFull from "../../assets/logo-full.png";
+import logoMark from "../../assets/logo-mark.png";
 import { PLACEHOLDERS } from "../../data/siteContent";
-import { SERIF } from "../../styles/tokens";
 
-// Text logo for now. Replace with the real logo file when it arrives.
-export default function Logo() {
+// "mark" is the circle only (for the nav). "full" includes the tagline underneath.
+const logoVariants = {
+  mark: { src: logoMark, sizeClass: "h-14 w-auto" },
+  full: { src: logoFull, sizeClass: "h-32 w-auto" },
+};
+
+export default function Logo({ variant = "mark" }) {
+  const { src, sizeClass } = logoVariants[variant];
+
   return (
-    <a href="#top" className={`${SERIF} text-2xl font-bold tracking-[0.18em] text-[#F3EEE3]`}>
-      {PLACEHOLDERS.businessName}
+    <a href="#top" className="inline-block">
+      <img src={src} alt={PLACEHOLDERS.businessName} className={sizeClass} />
     </a>
   );
 }

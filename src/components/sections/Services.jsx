@@ -7,7 +7,10 @@ import SectionHeading from "../ui/SectionHeading";
 export default function Services() {
   return (
     <section id="services" className="bg-black px-6 py-24 sm:py-32">
-      <SectionHeading title="Our Services" />
+      <SectionHeading
+        title="Our Services"
+        subtitle="Whatever the occasion, the menu is built around your event and your guest count."
+      />
 
       <ul className="mx-auto mt-16 grid max-w-5xl gap-12 sm:grid-cols-2 lg:grid-cols-4">
         {serviceItems.map(({ label, description, Icon }, index) => (
@@ -25,7 +28,7 @@ export default function Services() {
             />
             <span className="mt-6 h-px w-10 bg-[#C9A24B]" aria-hidden="true" />
             <h3 className={`${SERIF} mt-5 text-2xl font-semibold text-[#F3EEE3]`}>{label}</h3>
-            <p className={`${SANS} mt-3 max-w-[220px] text-xs leading-relaxed text-[#F3EEE3]/60`}>{description}</p>
+            <p className={`${SANS} mt-3 max-w-[240px] text-xs leading-relaxed text-[#F3EEE3]/60`}>{description}</p>
           </Reveal>
         ))}
       </ul>

@@ -3,7 +3,6 @@ import Nav from "./components/layout/Nav";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import Gallery from "./components/sections/Gallery";
 import Hero from "./components/sections/Hero";
-import MenuBanner from "./components/sections/MenuBanner";
 import MenuSection from "./components/sections/MenuSection";
 import QuoteForm from "./components/sections/QuoteForm";
 import Services from "./components/sections/Services";
@@ -19,7 +18,6 @@ export default function App() {
         <Welcome />
         <Story />
         <Services />
-        <MenuBanner />
         <MenuSection />
         <Gallery />
         <QuoteForm />

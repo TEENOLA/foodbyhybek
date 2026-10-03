@@ -64,6 +64,7 @@
 
 html {
   background: #000;
+  scroll-padding-top: 6rem; /* height of the fixed nav */
 }
 
 body {
