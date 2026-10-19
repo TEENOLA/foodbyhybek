@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Returns [ref, isInView]. isInView flips to true once the element
- * scrolls into view, and stays true after that.
+ * scrolls into view (as soon as its first pixels show), and stays true after that.
  */
-export default function useInView(threshold = 0.15) {
+export default function useInView(threshold = 0.01) {
   const elementRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -19,7 +19,7 @@ export default function useInView(threshold = 0.15) {
           observer.disconnect();
         }
       },
-      { threshold, rootMargin: "0px 0px -8% 0px" },
+      { threshold, rootMargin: "0px 0px 0px 0px" },
     );
     observer.observe(element);
     return () => observer.disconnect();

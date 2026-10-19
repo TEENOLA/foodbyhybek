@@ -2,7 +2,6 @@ import { useState } from "react";
 import { dishes, menuCategories } from "../../data/siteContent";
 import { SANS } from "../../styles/tokens";
 import DishCard from "../ui/DishCard";
-import Reveal from "../ui/Reveal";
 
 // Category tabs plus the dish cards for the chosen category
 export default function MenuCatalog() {
@@ -10,7 +9,7 @@ export default function MenuCatalog() {
   const visibleDishes = dishes.filter((dish) => dish.category === activeCategory);
 
   return (
-    <section className="bg-[#141414] px-6 py-20 sm:py-24">
+    <section className="bg-[#141414] px-6 py-14 sm:py-16">
       <div
         role="tablist"
         aria-label="Menu categories"
@@ -41,18 +40,17 @@ export default function MenuCatalog() {
         {visibleDishes.length} dishes in {activeCategory}
       </p>
 
-      {/* Cards remount on category change so they animate in again.
+      {/* Cards fade in on load and on category change (no scroll trigger, so nothing starts hidden below the fold).
           Flex + centred rows keep a short row (3 dishes) tidy. */}
       <ul className="mx-auto mt-8 flex max-w-6xl flex-wrap justify-center gap-5">
         {visibleDishes.map((dish, index) => (
-          <Reveal
-            as="li"
+          <li
             key={`${activeCategory}-${dish.name}`}
-            delay={index * 90}
-            className="w-[calc(50%-0.625rem)] md:w-[calc(25%-0.9375rem)]"
+            style={{ animationDuration: "450ms", animationDelay: `${Math.min(index, 7) * 40}ms` }}
+            className="w-[calc(50%-0.625rem)] animate-fade-in md:w-[calc(25%-0.9375rem)]"
           >
             <DishCard dish={dish} />
-          </Reveal>
+          </li>
         ))}
       </ul>
     </section>
