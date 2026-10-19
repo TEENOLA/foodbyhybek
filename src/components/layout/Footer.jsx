@@ -1,8 +1,9 @@
 import { PLACEHOLDERS, navLinksLeft, navLinksRight } from "../../data/siteContent";
 import { GOLD, SANS, SERIF } from "../../styles/tokens";
 import Logo from "../ui/Logo";
+import SmartLink from "../ui/SmartLink";
 
-const exploreLinks = [...navLinksLeft, ...navLinksRight, { label: "Request a Quote", href: "#quote" }];
+const exploreLinks = [...navLinksLeft, ...navLinksRight, { label: "Request a Quote", to: "/quote" }];
 
 export default function Footer() {
   return (
@@ -21,8 +22,8 @@ export default function Footer() {
             <li>{PLACEHOLDERS.address}</li>
           </ul>
           <div className={`${SANS} mt-5 flex justify-center gap-5 text-sm md:justify-start ${GOLD}`}>
-            <a href={PLACEHOLDERS.instagramUrl}>Instagram</a>
-            {PLACEHOLDERS.facebookUrl !== "#" && <a href={PLACEHOLDERS.facebookUrl}>Facebook</a>}
+            <SmartLink href={PLACEHOLDERS.instagramUrl}>Instagram</SmartLink>
+            {PLACEHOLDERS.facebookUrl !== "#" && <SmartLink href={PLACEHOLDERS.facebookUrl}>Facebook</SmartLink>}
           </div>
         </div>
 
@@ -31,8 +32,8 @@ export default function Footer() {
           <span className="mx-auto mt-3 block h-px w-10 bg-[#C9A24B] md:mx-0" aria-hidden="true" />
           <ul className={`${SANS} mt-6 space-y-2 text-sm text-[#F3EEE3]/75`}>
             {exploreLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className="hover:text-[#C9A24B]">{link.label}</a>
+              <li key={link.to}>
+                <SmartLink href={link.to} className="hover:text-[#C9A24B]">{link.label}</SmartLink>
               </li>
             ))}
           </ul>

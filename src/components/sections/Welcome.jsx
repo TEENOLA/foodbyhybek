@@ -6,7 +6,7 @@ import SectionHeading from "../ui/SectionHeading";
 
 export default function Welcome() {
   return (
-    <section id="welcome" className="bg-black px-6 py-24 sm:py-32">
+    <section className="bg-black px-6 py-24 sm:py-32">
       <SectionHeading title={`Welcome to ${PLACEHOLDERS.businessName}`} />
       <Reveal
         delay={200}
@@ -16,7 +16,7 @@ export default function Welcome() {
         <p>[Tell visitors who you are, what you cook, and where you serve]</p>
       </Reveal>
       <Reveal delay={400} className="mt-12 text-center">
-        <OutlineButton href="#quote">Let&apos;s connect</OutlineButton>
+        <OutlineButton href="/quote">Let&apos;s connect</OutlineButton>
       </Reveal>
     </section>
   );

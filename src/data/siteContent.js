@@ -23,14 +23,14 @@ export const WHATSAPP_LINK = `https://wa.me/${PLACEHOLDERS.whatsappNumber}?text=
 )}`;
 
 export const navLinksLeft = [
-  { label: "Welcome", href: "#welcome" },
-  { label: "Story", href: "#story" },
-  { label: "Services", href: "#services" },
+  { label: "Menu", to: "/menu" },
+  { label: "Services", to: "/services" },
+  { label: "Gallery", to: "/gallery" },
 ];
 
 export const navLinksRight = [
-  { label: "Menu", href: "#menu" },
-  { label: "Gallery", href: "#gallery" },
+  { label: "About", to: "/about" },
+  { label: "Events", to: "/events" },
 ];
 
 export const serviceItems = [
@@ -38,21 +38,33 @@ export const serviceItems = [
     label: "Weddings",
     description: "Generous Nigerian spreads for your celebration, served buffet-style so every guest is looked after.",
     Icon: Heart,
+    photoSlug: "gold-domes-spread",
+    detailPlaceholder: "[What you include for weddings: setup, serving staff, and anything else guests can expect]",
+    quoteLabel: "Quote for a wedding",
   },
   {
     label: "Corporate",
     description: "Hearty, well-presented food for team lunches, client events and company gatherings.",
     Icon: Briefcase,
+    photoSlug: "buffet-line",
+    detailPlaceholder: "[What you include for corporate events: drop-offs or full service, and the group sizes you handle]",
+    quoteLabel: "Quote for corporate",
   },
   {
     label: "Private Parties",
     description: "Birthdays, anniversaries and house gatherings, with party favourites like suya, puff puff and small chops.",
     Icon: PartyPopper,
+    photoSlug: "swallow-and-jollof",
+    detailPlaceholder: "[What you include for private parties: trays, buffet setup, or full service]",
+    quoteLabel: "Quote for a party",
   },
   {
     label: "Other Events",
     description: "Naming ceremonies, graduations, milestone celebrations and more. Tell us what you have in mind.",
     Icon: Cake,
+    photoSlug: "plate-in-hand",
+    detailPlaceholder: "[Other events you cater, and anything people should know before they ask]",
+    quoteLabel: "Tell us about your event",
   },
 ];
 
@@ -139,11 +151,11 @@ export const dishes = [
     description: "A flavourful Nigerian vegetable stew made with leafy greens, peppers, palm oil and assorted proteins.",
   },
   {
-    slug: "semolina",
-    name: "Semolina",
+    slug: "pounded-yam",
+    name: "Pounded Yam",
     origin: "Nigerian",
     category: "Soups & Swallows",
-    description: "Smooth, soft semolina swallow, perfect for pairing with your favourite Nigerian soups.",
+    description: "Smooth, soft pounded yam, perfect for pairing with your favourite Nigerian soups.",
   },
   {
     slug: "catfish-pepper-soup",
@@ -261,4 +273,39 @@ export const galleryItems = [
   .map((item) => ({ ...item, photo: galleryFiles[`../assets/gallery/${item.slug}.webp`] ?? null }))
   .filter((item) => item.photo);
 
+// Look up a gallery photo (and its alt text) by slug, for banners and strips on other pages
+export const getGalleryItem = (slug) => galleryItems.find((item) => item.slug === slug);
+
 export const eventTypes = ["Wedding", "Corporate", "Private party", "Other"];
+
+// ---------------------------------------------------------------------------
+// Events page
+// ---------------------------------------------------------------------------
+
+// Replace "#" with the link to her ticketing site. Every "Get Tickets" button uses it
+// unless an event has its own ticketUrl.
+export const TICKETS_URL = "#";
+
+export const featuredEvent = {
+  name: "[Event name]",
+  date: "[Day, Month DD, YYYY]",
+  time: "[Start - end time]",
+  venue: "[Venue, Edmonton, AB]",
+  description: "[Two sentences on what guests can expect: the food, the setting and the atmosphere]",
+  priceNote: "From [ticket price]",
+  photoSlug: "serving-suya",
+  ticketUrl: TICKETS_URL,
+};
+
+export const upcomingEvents = [
+  { id: "event-one", month: "[MON]", day: "[DD]", title: "[Event name]", details: "[Venue, Edmonton, AB] · [Start time]", ticketUrl: TICKETS_URL },
+  { id: "event-two", month: "[MON]", day: "[DD]", title: "[Event name]", details: "[Venue, Edmonton, AB] · [Start time]", ticketUrl: TICKETS_URL },
+  { id: "event-three", month: "[MON]", day: "[DD]", title: "[Event name]", details: "[Venue, Edmonton, AB] · [Start time]", ticketUrl: TICKETS_URL },
+];
+
+// "What happens next" steps shown beside the quote form
+export const quoteSteps = [
+  { title: "Send your details", text: "Tell us the date, your guest count and the dishes you have in mind." },
+  { title: "Get your custom quote", text: "[How soon you reply, e.g. within 24 hours]. The quote is built around your guest count and menu." },
+  { title: "Confirm your date", text: "[How a booking is secured, e.g. a deposit or a tasting]. Then we handle the food." },
+];

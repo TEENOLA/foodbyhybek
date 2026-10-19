@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logoFull from "../../assets/logo-full.png";
 import logoMark from "../../assets/logo-mark.png";
 import { PLACEHOLDERS } from "../../data/siteContent";
@@ -12,8 +13,8 @@ export default function Logo({ variant = "mark" }) {
   const { src, sizeClass } = logoVariants[variant];
 
   return (
-    <a href="#top" className="inline-block">
+    <Link to="/" className="inline-block">
       <img src={src} alt={PLACEHOLDERS.businessName} className={sizeClass} />
-    </a>
+    </Link>
   );
 }

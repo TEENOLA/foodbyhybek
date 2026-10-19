@@ -1,16 +1,14 @@
 import heroPhoto from "../../assets/hero/hero-buffet-perspective.webp";
+import logoFull from "../../assets/logo-full.png";
 import { PLACEHOLDERS } from "../../data/siteContent";
 import { GOLD, SANS } from "../../styles/tokens";
-import logoFull from "../../assets/logo-full.png";
+import OutlineButton from "../ui/OutlineButton";
 import QuoteButton from "../ui/QuoteButton";
 
 export default function Hero() {
   return (
-    // mt-24 matches the nav height, so the photo starts below the nav instead of behind it
-    <section
-      id="top"
-      className="relative mt-24 flex min-h-[calc(100svh-6rem)] items-end justify-center overflow-hidden bg-black"
-    >
+    // The page's top padding (pt-24) already clears the fixed nav
+    <section className="relative flex min-h-[calc(100svh-6rem)] items-end justify-center overflow-hidden bg-black">
       <div className="absolute inset-0 animate-slow-zoom">
         <img
           src={heroPhoto}
@@ -36,8 +34,9 @@ export default function Hero() {
         >
           Nigerian &amp; Ghanaian catering in Edmonton
         </p>
-        <div style={{ animationDelay: "1000ms" }} className="mt-10 animate-fade-up">
+        <div style={{ animationDelay: "1000ms" }} className="mt-10 flex animate-fade-up flex-wrap justify-center gap-4">
           <QuoteButton />
+          <OutlineButton href="/menu">View the menu</OutlineButton>
         </div>
       </div>
 

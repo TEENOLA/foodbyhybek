@@ -1,14 +1,13 @@
 import { PLACEHOLDERS, galleryItems } from "../../data/siteContent";
-import { GOLD, SANS } from "../../styles/tokens";
+import { SANS } from "../../styles/tokens";
+import OutlineButton from "../ui/OutlineButton";
 import Reveal from "../ui/Reveal";
-import SectionHeading from "../ui/SectionHeading";
 
-export default function Gallery() {
+// The full photo grid for the Gallery page
+export default function GalleryGrid() {
   return (
-    <section id="gallery" className="bg-black px-6 py-24 sm:py-32">
-      <SectionHeading title="Gallery" subtitle="Weddings, corporate events and private parties." />
-
-      <ul className="mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-3 md:grid-cols-3">
+    <section className="bg-black px-6 py-20 sm:py-24">
+      <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-3 md:grid-cols-3">
         {galleryItems.map((item, index) => (
           <Reveal as="li" key={item.slug} delay={(index % 3) * 120}>
             <div className="group overflow-hidden border border-transparent transition-colors duration-300 hover:border-[#C9A24B]">
@@ -23,12 +22,12 @@ export default function Gallery() {
         ))}
       </ul>
 
-      <p className={`${SANS} mt-10 text-center text-xs tracking-[0.15em] text-[#F3EEE3]/70`}>
-        Follow us on Instagram{" "}
-        <a href={PLACEHOLDERS.instagramUrl} className={`${GOLD} underline underline-offset-4`}>
-          {PLACEHOLDERS.instagramHandle}
-        </a>
-      </p>
+      <div className="mt-14 text-center">
+        <p className={`${SANS} text-xs tracking-[0.15em] text-[#F3EEE3]/70`}>More from our events on Instagram</p>
+        <div className="mt-5">
+          <OutlineButton href={PLACEHOLDERS.instagramUrl}>Follow {PLACEHOLDERS.instagramHandle}</OutlineButton>
+        </div>
+      </div>
     </section>
   );
 }

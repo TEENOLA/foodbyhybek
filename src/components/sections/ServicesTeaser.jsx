@@ -4,13 +4,11 @@ import OutlineButton from "../ui/OutlineButton";
 import Reveal from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
 
-export default function Services() {
+// Short icon version of the services, for the home page
+export default function ServicesTeaser() {
   return (
-    <section id="services" className="bg-black px-6 py-24 sm:py-32">
-      <SectionHeading
-        title="Our Services"
-        subtitle="Whatever the occasion, the menu is built around your event and your guest count."
-      />
+    <section className="bg-black px-6 py-24 sm:py-32">
+      <SectionHeading title="Our Services" />
 
       <ul className="mx-auto mt-16 grid max-w-5xl gap-12 sm:grid-cols-2 lg:grid-cols-4">
         {serviceItems.map(({ label, description, Icon }, index) => (
@@ -33,13 +31,8 @@ export default function Services() {
         ))}
       </ul>
 
-      {/* The only place halal is mentioned on the page */}
-      <p className={`${SANS} mt-16 text-center text-xs tracking-[0.15em] text-[#F3EEE3]/70`}>
-        All our food is halal.
-      </p>
-
-      <div className="mt-8 text-center">
-        <OutlineButton href="#quote">Learn more</OutlineButton>
+      <div className="mt-14 text-center">
+        <OutlineButton href="/services">See all services</OutlineButton>
       </div>
     </section>
   );

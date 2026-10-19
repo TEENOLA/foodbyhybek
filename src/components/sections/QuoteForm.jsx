@@ -1,10 +1,6 @@
 import { useState } from "react";
-import { Mail, MessageCircle, Phone } from "lucide-react";
-import {
-  PLACEHOLDERS,
-  WHATSAPP_LINK,
-  eventTypes,
-} from "../../data/siteContent";
+import { AtSign, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { PLACEHOLDERS, WHATSAPP_LINK, eventTypes, getGalleryItem, quoteSteps } from "../../data/siteContent";
 import { GOLD, GOLD_BORDER, SANS, SERIF } from "../../styles/tokens";
 import Reveal from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
@@ -13,6 +9,8 @@ const inputClass = `${SANS} w-full border border-[#C9A24B]/40 bg-black px-4 py-3
 const labelClass = `${SANS} mb-2 block text-[11px] tracking-[0.15em] text-[#F3EEE3]/70`;
 
 export default function QuoteForm() {
+  const sidePhoto = getGalleryItem("gold-domes-spread");
+
   // status: "idle" | "sending" | "success" | "error"
   const [status, setStatus] = useState("idle");
 
@@ -42,95 +40,105 @@ export default function QuoteForm() {
       />
 
       <Reveal className="mx-auto mt-14 grid max-w-6xl gap-12 border border-[#C9A24B]/40 bg-[#0d0d0d] p-6 sm:p-10 lg:grid-cols-[1.4fr_1fr]">
-        {/* Direct contact options come first on mobile */}
-        <aside className="order-first space-y-6 lg:order-last">
-          <a
-            href={WHATSAPP_LINK}
-            className={`${SANS} flex items-center justify-center gap-3 border ${GOLD_BORDER} py-3 text-xs font-medium uppercase tracking-[0.2em] ${GOLD} transition-colors hover:bg-[#C9A24B] hover:text-black`}
-          >
-            <MessageCircle size={18} /> Message on WhatsApp
-          </a>
-          <ul className={`${SANS} space-y-4 text-sm text-[#F3EEE3]/80`}>
-            <li className="flex items-center gap-3">
-              <Phone size={16} className={GOLD} />
-              <a href={PLACEHOLDERS.phoneHref}>{PLACEHOLDERS.phoneDisplay}</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail size={16} className={GOLD} />
-              <a href={`mailto:${PLACEHOLDERS.email}`}>{PLACEHOLDERS.email}</a>
-            </li>
-          </ul>
-          <p className={`${SANS} text-xs leading-relaxed text-[#F3EEE3]/60`}>
-            Serving Edmonton and surrounding areas.
-          </p>
+        <aside className="order-last flex flex-col">
+          {sidePhoto && (
+            <img
+              src={sidePhoto.photo}
+              alt={sidePhoto.alt}
+              className="h-56 w-full border border-[#C9A24B]/40 object-cover object-[50%_45%]"
+            />
+          )}
+
+          <h2 className={`${SERIF} mt-9 text-3xl font-semibold leading-tight text-[#F3EEE3]`}>What happens next</h2>
+          <span className="mt-3.5 block h-px w-10 bg-[#C9A24B]" aria-hidden="true" />
+
+          <ol className="mt-7">
+            {quoteSteps.map((step, index) => (
+              <li key={step.title} className="group relative flex gap-4 pb-6 last:pb-0">
+                {/* Gold line joining one step to the next */}
+                <span
+                  className="absolute bottom-[-22px] left-[17px] top-10 w-px bg-[#C9A24B]/40 group-last:hidden"
+                  aria-hidden="true"
+                />
+                <span
+                  className={`${SERIF} relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${GOLD_BORDER} bg-[#0d0d0d] text-xl font-semibold ${GOLD}`}
+                >
+                  {index + 1}
+                </span>
+                <div className="min-w-0">
+                  <h3 className={`${SERIF} text-2xl font-semibold leading-tight text-[#F3EEE3]`}>{step.title}</h3>
+                  <p className={`${SANS} mt-1.5 text-[13px] leading-relaxed text-[#F3EEE3]/70`}>{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-9 border-t border-[#C9A24B]/25 pt-8">
+            <p className={`${SANS} mb-4 text-[11px] font-semibold uppercase tracking-[0.26em] ${GOLD}`}>Prefer to talk?</p>
+            <a
+              href={WHATSAPP_LINK}
+              className={`${SANS} flex items-center justify-center gap-3 border ${GOLD_BORDER} py-3.5 text-xs font-medium uppercase tracking-[0.2em] ${GOLD} transition-colors hover:bg-[#C9A24B] hover:text-black`}
+            >
+              <MessageCircle size={18} /> Message on WhatsApp
+            </a>
+            <ul className={`${SANS} mt-7 space-y-4 text-sm text-[#F3EEE3]/80`}>
+              <li className="flex items-center gap-3.5">
+                <Phone size={18} strokeWidth={1.5} className={GOLD} />
+                <a href={PLACEHOLDERS.phoneHref}>{PLACEHOLDERS.phoneDisplay}</a>
+              </li>
+              <li className="flex items-center gap-3.5">
+                <Mail size={18} strokeWidth={1.5} className={GOLD} />
+                <a href={`mailto:${PLACEHOLDERS.email}`}>{PLACEHOLDERS.email}</a>
+              </li>
+              <li className="flex items-center gap-3.5">
+                <AtSign size={18} strokeWidth={1.5} className={GOLD} />
+                <a href={PLACEHOLDERS.instagramUrl} target="_blank" rel="noopener noreferrer">
+                  {PLACEHOLDERS.instagramHandle}
+                </a>
+              </li>
+              <li className="flex items-center gap-3.5">
+                <MapPin size={18} strokeWidth={1.5} className={GOLD} />
+                <span>{PLACEHOLDERS.address}</span>
+              </li>
+            </ul>
+            <p className={`${SANS} mt-6 text-xs leading-relaxed text-[#F3EEE3]/60`}>
+              Serving Edmonton and surrounding areas.
+            </p>
+          </div>
         </aside>
 
         {status === "success" ? (
           <div className="flex animate-fade-up flex-col items-center justify-center py-12 text-center">
-            <h3 className={`${SERIF} text-3xl font-semibold text-[#F3EEE3]`}>
-              Request sent
-            </h3>
+            <h3 className={`${SERIF} text-3xl font-semibold text-[#F3EEE3]`}>Request sent</h3>
             <p className={`${SANS} mt-4 max-w-sm text-sm text-[#F3EEE3]/70`}>
-              Thank you. We'll review your event details and reply with a custom
-              quote.
+              Thank you. We'll review your event details and reply with a custom quote.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
+          <form onSubmit={handleSubmit} className="grid content-start gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className={labelClass}>
-                Name
-              </label>
+              <label htmlFor="name" className={labelClass}>Name</label>
               <input id="name" name="name" required className={inputClass} />
             </div>
             <div>
-              <label htmlFor="phone" className={labelClass}>
-                Phone
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                required
-                className={inputClass}
-              />
+              <label htmlFor="phone" className={labelClass}>Phone</label>
+              <input id="phone" name="phone" type="tel" required className={inputClass} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="email" className={labelClass}>
-                Email (optional)
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                className={inputClass}
-              />
+              <label htmlFor="email" className={labelClass}>Email (optional)</label>
+              <input id="email" name="email" type="email" className={inputClass} />
             </div>
             <div>
-              <label htmlFor="eventType" className={labelClass}>
-                Event type
-              </label>
-              <select
-                id="eventType"
-                name="eventType"
-                required
-                defaultValue=""
-                className={inputClass}
-              >
-                <option value="" disabled>
-                  Select one
-                </option>
+              <label htmlFor="eventType" className={labelClass}>Event type</label>
+              <select id="eventType" name="eventType" required defaultValue="" className={inputClass}>
+                <option value="" disabled>Select one</option>
                 {eventTypes.map((eventType) => (
-                  <option key={eventType} value={eventType}>
-                    {eventType}
-                  </option>
+                  <option key={eventType} value={eventType}>{eventType}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label htmlFor="eventDate" className={labelClass}>
-                Event date
-              </label>
+              <label htmlFor="eventDate" className={labelClass}>Event date</label>
               {/* iOS Safari gives date inputs a minimum width and height of their own, so reset them */}
               <input
                 id="eventDate"
@@ -141,54 +149,24 @@ export default function QuoteForm() {
               />
             </div>
             <div>
-              <label htmlFor="guestCount" className={labelClass}>
-                Estimated guests
-              </label>
-              <input
-                id="guestCount"
-                name="guestCount"
-                type="number"
-                min={1}
-                className={inputClass}
-              />
+              <label htmlFor="guestCount" className={labelClass}>Estimated guests</label>
+              <input id="guestCount" name="guestCount" type="number" min={1} className={inputClass} />
             </div>
             <div>
-              <label htmlFor="area" className={labelClass}>
-                Area in Edmonton
-              </label>
+              <label htmlFor="area" className={labelClass}>Area in Edmonton</label>
               <input id="area" name="area" className={inputClass} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="dishes" className={labelClass}>
-                Dishes you're interested in
-              </label>
-              <input
-                id="dishes"
-                name="dishes"
-                placeholder="Jollof, suya, egusi..."
-                className={inputClass}
-              />
+              <label htmlFor="dishes" className={labelClass}>Dishes you're interested in</label>
+              <input id="dishes" name="dishes" placeholder="Jollof, suya, egusi..." className={inputClass} />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="message" className={labelClass}>
-                Dietary needs or anything else
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                className={inputClass}
-              />
+              <label htmlFor="message" className={labelClass}>Dietary needs or anything else</label>
+              <textarea id="message" name="message" rows={4} className={inputClass} />
             </div>
 
             {/* Honeypot field, hidden from people */}
-            <input
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              className="hidden"
-              aria-hidden="true"
-            />
+            <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
             <div className="sm:col-span-2">
               <button
@@ -199,15 +177,9 @@ export default function QuoteForm() {
                 {status === "sending" ? "Sending..." : "Send request"}
               </button>
               {status === "error" && (
-                <p
-                  className={`${SANS} mt-4 text-sm text-[#F3EEE3]/80`}
-                  role="alert"
-                >
+                <p className={`${SANS} mt-4 text-sm text-[#F3EEE3]/80`} role="alert">
                   Your request didn't send. Please try again, or{" "}
-                  <a
-                    href={WHATSAPP_LINK}
-                    className={`${GOLD} underline underline-offset-4`}
-                  >
+                  <a href={WHATSAPP_LINK} className={`${GOLD} underline underline-offset-4`}>
                     reach us on WhatsApp
                   </a>
                   .

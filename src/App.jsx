@@ -1,29 +1,27 @@
-import Footer from "./components/layout/Footer";
-import Nav from "./components/layout/Nav";
-import WhatsAppButton from "./components/layout/WhatsAppButton";
-import Gallery from "./components/sections/Gallery";
-import Hero from "./components/sections/Hero";
-import MenuSection from "./components/sections/MenuSection";
-import QuoteForm from "./components/sections/QuoteForm";
-import Services from "./components/sections/Services";
-import Story from "./components/sections/Story";
-import Welcome from "./components/sections/Welcome";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import AboutPage from "./pages/AboutPage";
+import EventsPage from "./pages/EventsPage";
+import GalleryPage from "./pages/GalleryPage";
+import HomePage from "./pages/HomePage";
+import MenuPage from "./pages/MenuPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import QuotePage from "./pages/QuotePage";
+import ServicesPage from "./pages/ServicesPage";
 
 export default function App() {
   return (
-    <div className="bg-black text-[#F3EEE3] antialiased">
-      <Nav />
-      <main>
-        <Hero />
-        <Welcome />
-        <Story />
-        <Services />
-        <MenuSection />
-        <Gallery />
-        <QuoteForm />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="menu" element={<MenuPage />} />
+        <Route path="services" element={<ServicesPage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="events" element={<EventsPage />} />
+        <Route path="quote" element={<QuotePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
