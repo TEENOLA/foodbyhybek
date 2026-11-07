@@ -18,6 +18,24 @@ export const PLACEHOLDERS = {
   ownerTitle: "Owner/CEO",
 };
 
+// About Us copy, supplied by the client
+export const aboutContent = {
+  pullQuote: "We do not just serve food; we create moments.",
+  teaser:
+    "Every meal should be an experience, one that brings the comfort and joy of home-cooked food to your table. Our passion for food is matched only by our commitment to our clients.",
+  intro: [
+    "Welcome to FOODBYHYBEK, where culinary excellence meets heartfelt service. We believe that every meal should be an experience, one that brings the comfort and joy of home-cooked food to your table. Our passion for food is matched only by our commitment to our clients, ensuring that every dish we serve is not only delicious but also crafted with care and attention to detail.",
+    "Our team of talented chefs uses only the freshest ingredients, creating meals that are both flavorful and wholesome. Whether it is a corporate event, a wedding, or an intimate gathering, we tailor our menus to suit your needs and preferences, making sure that every bite is a delight.",
+  ],
+  setApartTitle: "What sets us apart",
+  setApart:
+    "We are committed to making every client feel valued and special. We listen to your needs, understand your vision, and work tirelessly to bring it to life. Our goal is to exceed your expectations, providing a seamless, enjoyable, and memorable catering experience.",
+  momentsTitle: "We create moments",
+  moments:
+    "Moments that remind you of the warmth of home, the joy of sharing a meal with loved ones, and the pleasure of savoring expertly prepared dishes. Let us bring our kitchen to you and make your next event truly unforgettable.",
+  closing: "Experience the taste of home with FOODBYHYBEK, where every meal is a masterpiece, and every client is family.",
+};
+
 export const WHATSAPP_LINK = `https://wa.me/${PLACEHOLDERS.whatsappNumber}?text=${encodeURIComponent(
   "Hi, I'd like a quote for an event.",
 )}`;

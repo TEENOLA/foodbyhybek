@@ -1,10 +1,10 @@
 import ownerPhoto from "../../assets/story/owner.webp";
-import { PLACEHOLDERS } from "../../data/siteContent";
+import { PLACEHOLDERS, aboutContent } from "../../data/siteContent";
 import { GOLD, SANS, SERIF } from "../../styles/tokens";
 import OutlineButton from "../ui/OutlineButton";
 import Reveal from "../ui/Reveal";
 
-const paragraphClass = `${SANS} mt-8 max-w-md text-sm leading-loose text-[#F3EEE3]/70`;
+const paragraphClass = `${SANS} mt-8 max-w-lg text-sm leading-loose text-[#F3EEE3]/70`;
 
 // variant "teaser": short version on the home page, with a link to /about
 // variant "full": two paragraphs, used on the About page
@@ -26,7 +26,7 @@ export default function Story({ variant = "teaser" }) {
 
       <Reveal from="right" delay={200} className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-20">
         <blockquote className={`${SERIF} text-3xl font-medium leading-snug text-[#F3EEE3] sm:text-4xl`}>
-          “[Why did you start cooking for events? Say it in a sentence or two, in your own words.]”
+          “{aboutContent.pullQuote}”
         </blockquote>
         <span className="mt-8 block h-px w-14 bg-[#C9A24B]" aria-hidden="true" />
         <p className={`${SERIF} mt-5 text-2xl italic text-[#F3EEE3]`}>{PLACEHOLDERS.ownerName}</p>
@@ -34,16 +34,15 @@ export default function Story({ variant = "teaser" }) {
 
         {isFull ? (
           <>
-            <p className={paragraphClass}>
-              [A short paragraph about your story: where the cooking started and how it grew into catering]
-            </p>
-            <p className={`${paragraphClass} !mt-5`}>
-              [A short paragraph about what makes your food different and what guests can expect]
-            </p>
+            {aboutContent.intro.map((paragraph, index) => (
+              <p key={paragraph} className={`${paragraphClass} ${index > 0 ? "!mt-5" : ""}`}>
+                {paragraph}
+              </p>
+            ))}
           </>
         ) : (
           <>
-            <p className={paragraphClass}>[A short paragraph about your story and what makes your food different]</p>
+            <p className={paragraphClass}>{aboutContent.teaser}</p>
             <div className="mt-9">
               <OutlineButton href="/about">Read the story</OutlineButton>
             </div>
